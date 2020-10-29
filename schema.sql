@@ -6,7 +6,7 @@ USE employee_DB;
 
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT, 
-    name VARCHAR(30),
+    names VARCHAR(30),
     PRIMARY KEY (id) 
 );
 
@@ -28,10 +28,29 @@ CREATE TABLE employee (
     PRIMARY KEY (id)
     
     
-   
-
 );
 
+INSERT INTO department (names) values ('Engineer');
+INSERT INTO department (names) values ('Intern');
+INSERT INTO department (names) values ('Manager');
+INSERT INTO department (names) values ('User Experience');
+
+INSERT INTO roles (title, salary) values ('Enginner', 100000);
+INSERT INTO roles (title, salary) values ('Intern', 25000);
+INSERT INTO roles (title, salary) values ('Manger', 125000);
+INSERT INTO roles (title, salary) values ('User Experience', 110000);
+
+INSERT INTO employee (firstName, lastName) values ('Jane', 'Austen');
+INSERT INTO employee (firstName, lastName) values ('Mark', 'Twain');
+INSERT INTO employee (firstName, lastName) values ('Lewis', 'Carroll');
+INSERT INTO employee (firstName, lastName) values ('Andre', 'Asselin');
+
+SELECT * FROM department
+
+
+
+
+Error Code: 1136. Column count doesn't match value count at row 1
 
 
 
