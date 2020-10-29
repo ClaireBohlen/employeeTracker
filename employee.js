@@ -1,6 +1,7 @@
-var mysql = require("mysql");
+var mysql = require("mysql"); // My Sql 
+var inquirer = require("inquirer"); // Inquirer Prompts 
 
-var connection = mysql.createConnection({
+var connection = mysql.createConnection({  // make connection with local server & mySql 
   host: "localhost",
 
   // Your port; if not 3306
@@ -10,12 +11,11 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "",
-  database: "ice_creamDB"
+  password: "112392Cb!", 
+  database: "employee_DB"
 });
 
 connection.connect(function(err) {
-  if (err) throw err;
-  console.log("connected as id " + connection.threadId + "\n");
-  createProduct();
+    if (err) throw err;
+    runSearch(); // Need a function that will start inquirer prompts 
 });
