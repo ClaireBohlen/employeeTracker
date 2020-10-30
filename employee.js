@@ -31,45 +31,83 @@ function employeeInfo(){ //command line application
   .then(function(answer){
     if (answer.firstQuestion === "View all employees"){
       console.log("View all employees");
+        viewEmployees();
     }
     else if (answer.firstQuestion === "View all Departments"){
       console.log("View all Department Categories")
-    }
-    else if (answer.firstQuestion === "View all Departments"){
-      console.log("View all Department Categories")
+      // viewDepartments();
     }
     else if (answer.firstQuestion === "View all Roles"){
-      console.log("View all Department Categories")
+      console.log("View all Roles Categories")
+        // viewRoles();
     }
     else if (answer.firstQuestion === "Add a department"){
-      console.log("Add a new")
+      console.log("Add a new Department")
+      // addDepartment();
     }
     else if (answer.firstQuestion === "Add a role"){
       console.log("Add a new role")
+      // addRole();
     }
     else if (answer.firstQuestion === "Add an employee"){
       console.log("Add a new employee") 
+      // addEmployee();
     }
     else if (answer.firstQuestion === "Update an employee") {
       console.log("Update employee info")
+      // updateEmployee();
     }
 
   });
-}
-
 employeeInfo();
 
+viewEmployees();
+//Function to view all employees in the table 
+
+viewDepartments();
+//View all the differnt department 
+
+viewRoles();
+//View all the differnt roles
+
+addDepartment();
+//add a new department category
+
+addRole();
+//add a new role catergory
+
+addEmployee();
+//add a new employee 
+
+updateEmployee();
+//update an exsiting employee
 
 
 
 
-// Build a command-line application that at a minimum allows the user to:
 
-//   * Add departments, roles, employees
 
-//   * View departments, roles, employees
+}
 
-//   * Update employee roles
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Bonus points if you're able to:
 
