@@ -42,8 +42,8 @@ function employeeInfo(){ //command line application
         // viewRoles();
     }
     else if (answer.firstQuestion === "Add a department"){
-      console.log("Add a new Department")
-      // addDepartment();
+      // console.log("Add a new Department")
+      addDepartment();
     }
     else if (answer.firstQuestion === "Add a role"){
       console.log("Add a new role")
@@ -59,27 +59,55 @@ function employeeInfo(){ //command line application
     }
 
   });
-employeeInfo();
+}
 
-viewEmployees();
+function viewEmployees (){
+  connection.query("SELECT * FROM employee", function(err, results){
+    if (err) throw err;
+    console.table(results);
+  })
+}
+
+
+
+
+ 
+
 //Function to view all employees in the table 
 
-viewDepartments();
+// viewDepartments();
 //View all the differnt department 
 
-viewRoles();
+// viewRoles();
 //View all the differnt roles
 
-addDepartment();
 //add a new department category
+function addDepartment (){
+  console.log ("ask");
+  inquirer
+    .prompt ([
+      {
+        name: "newDepartmentName",
+        type: "input",
+        messgae: "Insert the name of the new department you would like to add?"
 
-addRole();
+      }
+    ])
+    .then(function(answer){
+      connection.query("INSERT INTO department SET ?",{
+        names: answer.newDepartmentName
+      })
+    })
+}
+
+
+// addRole();
 //add a new role catergory
 
-addEmployee();
+// addEmployee();
 //add a new employee 
 
-updateEmployee();
+// updateEmployee();
 //update an exsiting employee
 
 
@@ -87,7 +115,6 @@ updateEmployee();
 
 
 
-}
 
 
 
@@ -97,6 +124,7 @@ updateEmployee();
 
 
 
+employeeInfo();
 
 
 

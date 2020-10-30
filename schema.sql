@@ -15,6 +15,7 @@ CREATE TABLE roles (
     title VARCHAR (30), 
     salary DECIMAL(10,4) NULL, 
     department_id INT,
+    CONSTRAINT fk_department_id FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 
 );
@@ -23,30 +24,36 @@ CREATE TABLE employee (
     id INT NOT NULL AUTO_INCREMENT, 
     first_name VARCHAR(30),   
     last_name VARCHAR(30),  
-    role_id INT, 
+    roles_id INT, 
+    CONSTRAINT fk_roles_id FOREIGN KEY (roles_id) REFERENCES roles(id) ON DELETE CASCADE,
     manager_id INT,
     PRIMARY KEY (id)
     
+
     
+
     
 );
 
--- INSERT INTO department (names) values ('Engineer');
--- INSERT INTO department (names) values ('Intern');
--- INSERT INTO department (names) values ('Manager');
--- INSERT INTO department (names) values ('User Experience');
+INSERT INTO department (names) values ('Engineer Department');
+INSERT INTO department (names) values ('Intern Department');
+INSERT INTO department (names) values ('Manager Department');
+INSERT INTO department (names) values ('User Experience Department');
 
--- INSERT INTO roles (title, salary) values ('Enginner', 100000);
--- INSERT INTO roles (title, salary) values ('Intern', 25000);
--- INSERT INTO roles (title, salary) values ('Manger', 125000);
--- INSERT INTO roles (title, salary) values ('User Experience', 110000);
+INSERT INTO roles (title, salary, department_id) values ('Engineer', 100000, 1);
+INSERT INTO roles (title, salary, department_id) values ('Intern', 25000, 2);
+INSERT INTO roles (title, salary, department_id) values ('Manger', 125000, 3);
+INSERT INTO roles (title, salary, department_id) values ('User Experience', 110000, 4);
 
--- INSERT INTO employee (firstName, lastName) values ('Jane', 'Austen');
--- INSERT INTO employee (firstName, lastName) values ('Mark', 'Twain');
--- INSERT INTO employee (firstName, lastName) values ('Lewis', 'Carroll');
--- INSERT INTO employee (firstName, lastName) values ('Andre', 'Asselin');
+INSERT INTO employee (first_name, last_name) values ('Jane', 'Austen');
+INSERT INTO employee (first_name, last_name) values ('Mark', 'Twain');
+INSERT INTO employee (first_name, last_name) values ('Lewis', 'Carroll');
+INSERT INTO employee (first_name, last_name) values ('Andre', 'Asselin');
 
--- SELECT * FROM department
+
+
+
+
 
 
 
