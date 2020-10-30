@@ -70,14 +70,21 @@ function addDepartment (){
       {
         name: "newDepartmentName",
         type: "input",
-        messgae: "Insert the name of the new department you would like to add?"
+        message: "Insert the name of the new department you would like to add?"
 
-      }
+      },
     ])
     .then(function(answer){
-      connection.query("INSERT INTO department SET ?",{
-        names: answer.newDepartmentName
-      })
+      connection.query("INSERT INTO department SET ?",
+      {
+        names: answer.newDepartmentName,
+      },
+      function(err){
+        if (err) throw err;
+        console.log("Department was added");
+        employeeInfo();
+      }
+      )
     })
 }
 
