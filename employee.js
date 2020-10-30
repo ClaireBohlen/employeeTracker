@@ -20,6 +20,16 @@ connection.connect(function(err) {
     runSearch(); // Need a function that will start inquirer prompts 
 });
 
+function employeeInfo(){
+  inquirer.prompt(
+    {
+    name:"employeeType",
+    type: "",
+    message: "What would you like to do?",
+    choices: ["View all employees", "View all Departments", "View all Roles", "Add a department", "Add a role", "Add an employee", "Update an employee"]
+  })
+}
+
 // Build a command-line application that at a minimum allows the user to:
 
 //   * Add departments, roles, employees
