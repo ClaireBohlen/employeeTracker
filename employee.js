@@ -33,14 +33,6 @@ function employeeInfo(){ //command line application
       console.log("View all employees");
         viewEmployees();
     }
-    else if (answer.firstQuestion === "View all Departments"){
-      console.log("View all Department Categories")
-      // viewDepartments();
-    }
-    else if (answer.firstQuestion === "View all Roles"){
-      console.log("View all Roles Categories")
-        // viewRoles();
-    }
     else if (answer.firstQuestion === "Add a department"){
       // console.log("Add a new Department")
       addDepartment();
@@ -51,7 +43,7 @@ function employeeInfo(){ //command line application
     }
     else if (answer.firstQuestion === "Add an employee"){
       console.log("Add a new employee") 
-      // addEmployee();
+      addEmployee();
     }
     else if (answer.firstQuestion === "Update an employee") {
       console.log("Update employee info")
@@ -61,34 +53,14 @@ function employeeInfo(){ //command line application
   });
 }
 
-function viewEmployees (){
+//Function to view all employees in the table 
+function viewEmployees (){  
   connection.query("SELECT employee.id, employee.first_name, employee.last_name, roles.title, roles.salary, department.names AS department FROM employee LEFT JOIN roles ON employee.roles_id = roles.id LEFT JOIN department ON roles.department_id = department.id", (err, res) => {
     if (err) throw err;
     console.table(res);
   })
 }
 
-// connection.query("SELECT employee.id, employee.first_name, employee.last_name, roles.title, roles.salary, department.name AS department FROM employee LEFT JOIN role ON employee.roles_id = roles.id LEFT JOIN department ON roles.department_id = department.id", (err, res) => {
-//   if (err) throw err;
-//   console.table(res);
-// });
-
-
-
-
-
-
-
-
- 
-
-//Function to view all employees in the table 
-
-// viewDepartments();
-//View all the differnt department 
-
-// viewRoles();
-//View all the differnt roles
 
 //add a new department category
 function addDepartment (){
@@ -109,11 +81,59 @@ function addDepartment (){
     })
 }
 
-
-// addRole();
 //add a new role catergory
+// function addRole (){
+  
+// }
 
-// addEmployee();
+
+
+function addEmployee (){ //add a new employee 
+  inquirer
+  .prompt([
+    {
+      name: "newFirstName",
+      type: "input",
+      message: "Enter in the employee's first name?"
+    },
+    {
+      name: "newLastName",
+      type: "input",
+      message: "Enter in the employee's last name?"
+    },
+    {
+      name: "newRoleId",
+      type: "input",
+      message: "What is the employees ID?",
+      
+    },
+    {
+      name: "newManagerId",
+      type: "input",
+      message: "Please enter in the employee's manager (ID)?",
+      
+    }
+  ])
+  .then(function(answer) {
+    // when finished prompting, insert a new item into the db with that info
+    connection.query(
+      "INSERT INTO employee SET ?",
+      {
+        first_name: answer.newFirstName,
+        last_name: answer.newLastName,
+        roles_id: answer.newRoleId,
+        manager_id: answer.newManagerId
+      },
+      function(err) {
+        if (err) throw err;
+        console.log("Your auction was created successfully!");
+        // re-prompt the user for if they want to bid or post
+        viewEmployees();
+      }
+    );
+  });
+}
+
 //add a new employee 
 
 // updateEmployee();
