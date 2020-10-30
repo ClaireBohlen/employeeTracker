@@ -17,18 +17,51 @@ var connection = mysql.createConnection({  // make connection with local server 
 
 connection.connect(function(err) {
     if (err) throw err;
-    runSearch(); // Need a function that will start inquirer prompts 
+     // Need a function that will start inquirer prompts 
 });
 
-function employeeInfo(){
+function employeeInfo(){ //command line application
   inquirer.prompt(
     {
-    name:"employeeType",
-    type: "",
+    name:"firstQuestion", //starting prompt that will lead to specific functions 
+    type: "list",
     message: "What would you like to do?",
     choices: ["View all employees", "View all Departments", "View all Roles", "Add a department", "Add a role", "Add an employee", "Update an employee"]
   })
+  .then(function(answer){
+    if (answer.firstQuestion === "View all employees"){
+      console.log("View all employees");
+    }
+    else if (answer.firstQuestion === "View all Departments"){
+      console.log("View all Department Categories")
+    }
+    else if (answer.firstQuestion === "View all Departments"){
+      console.log("View all Department Categories")
+    }
+    else if (answer.firstQuestion === "View all Roles"){
+      console.log("View all Department Categories")
+    }
+    else if (answer.firstQuestion === "Add a department"){
+      console.log("Add a new")
+    }
+    else if (answer.firstQuestion === "Add a role"){
+      console.log("Add a new role")
+    }
+    else if (answer.firstQuestion === "Add an employee"){
+      console.log("Add a new employee") 
+    }
+    else if (answer.firstQuestion === "Update an employee") {
+      console.log("Update employee info")
+    }
+
+  });
 }
+
+employeeInfo();
+
+
+
+
 
 // Build a command-line application that at a minimum allows the user to:
 
