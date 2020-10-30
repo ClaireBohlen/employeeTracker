@@ -62,11 +62,20 @@ function employeeInfo(){ //command line application
 }
 
 function viewEmployees (){
-  connection.query("SELECT * FROM employee", function(err, results){
+  connection.query("SELECT employee.id, employee.first_name, employee.last_name, roles.title, roles.salary, department.names AS department FROM employee LEFT JOIN roles ON employee.roles_id = roles.id LEFT JOIN department ON roles.department_id = department.id", (err, res) => {
     if (err) throw err;
-    console.table(results);
+    console.table(res);
   })
 }
+
+// connection.query("SELECT employee.id, employee.first_name, employee.last_name, roles.title, roles.salary, department.name AS department FROM employee LEFT JOIN role ON employee.roles_id = roles.id LEFT JOIN department ON roles.department_id = department.id", (err, res) => {
+//   if (err) throw err;
+//   console.table(res);
+// });
+
+
+
+
 
 
 

@@ -45,10 +45,10 @@ INSERT INTO roles (title, salary, department_id) values ('Intern', 25000, 2);
 INSERT INTO roles (title, salary, department_id) values ('Manger', 125000, 3);
 INSERT INTO roles (title, salary, department_id) values ('User Experience', 110000, 4);
 
-INSERT INTO employee (first_name, last_name) values ('Jane', 'Austen');
-INSERT INTO employee (first_name, last_name) values ('Mark', 'Twain');
-INSERT INTO employee (first_name, last_name) values ('Lewis', 'Carroll');
-INSERT INTO employee (first_name, last_name) values ('Andre', 'Asselin');
+INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Jane', 'Austen');
+INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Mark', 'Twain');
+INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Lewis', 'Carroll');
+INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Andre', 'Asselin');
 
 
 
