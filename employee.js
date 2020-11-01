@@ -58,20 +58,21 @@ function viewEmployees (){
   connection.query("SELECT employee.id, employee.first_name, employee.last_name, roles.title, roles.salary, department.names AS department FROM employee LEFT JOIN roles ON employee.roles_id = roles.id LEFT JOIN department ON roles.department_id = department.id", (err, res) => {
     if (err) throw err;
     console.table(res);
+    employeeInfo();
   })
 }
 
 
 //add a new department category
 function addDepartment (){
-  viewEmployees(); 
+  // viewEmployees(); 
   console.log ("ask");
   inquirer
     .prompt ([
       {
         name: "newDepartmentName",
         type: "input",
-        message: "Insert the name of the new department you would like to add? +\n" 
+        message: "Insert the name of the new department you would like to add?" 
 
       },
     ])
@@ -91,12 +92,13 @@ function addDepartment (){
 
 //add a new role catergory
 function addRole(){
+  // viewEmployees(); 
   inquirer
     .prompt ([
       {
         name: "titleRole",
         type: "input",
-        message: "What is the title of the role?"
+        message: "What is the title of the role? "
       },
       {
         name: "salaryRole",
@@ -131,7 +133,8 @@ function addRole(){
 
 
 //Add a new employee
-function addEmployee (){ //add a new employee 
+function addEmployee (){ 
+  // viewEmployees(); 
   inquirer
   .prompt([
     {
@@ -182,6 +185,7 @@ function addEmployee (){ //add a new employee
 
 //update an exsiting employee
 function updateEmployee (){
+  // viewEmployees(); 
   inquirer
     .prompt ([
       {
