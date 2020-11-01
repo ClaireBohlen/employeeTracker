@@ -16,7 +16,7 @@ Table of Contents:
 * [Test](#test)
 * [Contact](#contact)
 
-![](gif.gif)
+![](Gif.gif)
 
 
 **Below is a description of my project: 
