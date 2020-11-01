@@ -26,20 +26,20 @@ function employeeInfo(){ //command line application
     name:"firstQuestion", //starting prompt that will lead to specific functions 
     type: "list",
     message: "What would you like to do?",
-    choices: ["View all employees", "View all Departments", "View all Roles", "Add a department", "Add a role", "Add an employee", "Update an employee"]
+    choices: ["View all employees",  "Add a department", "Add a role", "Add an employee", "Update an employee"]
   })
   .then(function(answer){
     if (answer.firstQuestion === "View all employees"){
       console.log("View all employees");
-        viewEmployees();
+        viewEmployees(); // done 
     }
     else if (answer.firstQuestion === "Add a department"){
       // console.log("Add a new Department")
-      addDepartment();
+      addDepartment(); // done 
     }
     else if (answer.firstQuestion === "Add a role"){
       console.log("Add a new role")
-      // addRole();
+      addRole();
     }
     else if (answer.firstQuestion === "Add an employee"){
       console.log("Add a new employee") 
@@ -89,12 +89,47 @@ function addDepartment (){
 }
 
 //add a new role catergory
-// function addRole (){
+function addRole(){
+  inquirer
+    .prompt ([
+      {
+        name: "titleRole",
+        type: "input",
+        message: "What is the title of the role?"
+      },
+      {
+        name: "salaryRole",
+        type: "input",
+        message: "What is the salary of the role?"
+      },
+      {
+        name: "departmentRole",
+        type: "input",
+        message: "What department does this role belong in??"
+      }
+
+    ])
+    .then(function(answer){
+      connection.query("INSERT INTO roles SET ?",
+      {
+        title: answer.titleRole,
+        salary: answer.salaryRole,
+        department_id: answer.departmentRole,
+
+      },
+      function(err){
+        if (err) throw err;
+        console.log("New role was added");
+        employeeInfo();
+      }
+      );
+    });
+}
   
-// }
 
 
 
+//Add a new employee
 function addEmployee (){ //add a new employee 
   inquirer
   .prompt([
