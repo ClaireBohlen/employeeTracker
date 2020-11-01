@@ -15,7 +15,7 @@ CREATE TABLE roles (
     title VARCHAR (30), 
     salary DECIMAL(10,4) NULL, 
     department_id INT,
-    -- CONSTRAINT fk_department_id FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE,
+    CONSTRAINT fk_department_id FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 
 );
@@ -25,7 +25,7 @@ CREATE TABLE employee (
     first_name VARCHAR(30),   
     last_name VARCHAR(30),  
     roles_id INT, 
-    -- CONSTRAINT fk_roles_id FOREIGN KEY (roles_id) REFERENCES roles(id) ON DELETE CASCADE,
+    CONSTRAINT fk_roles_id FOREIGN KEY (roles_id) REFERENCES roles(id) ON DELETE CASCADE,
     manager_id INT,
     PRIMARY KEY (id)
     
@@ -45,10 +45,13 @@ INSERT INTO roles (title, salary, department_id) values ('Intern', 25000, 2);
 INSERT INTO roles (title, salary, department_id) values ('Manger', 125000, 3);
 INSERT INTO roles (title, salary, department_id) values ('User Experience', 110000, 4);
 
-INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Jane', 'Austen');
-INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Mark', 'Twain');
-INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Lewis', 'Carroll');
-INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Andre', 'Asselin');
+INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Jane', 'Austen', 1, 001);
+INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Mark', 'Twain', 2, 002);
+INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Lewis', 'Carroll', 3, 003);
+INSERT INTO employee (first_name, last_name, roles_id, manager_id) values ('Andre', 'Asselin', 4, 004);
+
+
+
 
 
 

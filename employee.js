@@ -47,7 +47,7 @@ function employeeInfo(){ //command line application
     }
     else if (answer.firstQuestion === "Update an employee") {
       console.log("Update employee info")
-      // updateEmployee();
+      updateEmployee();
     }
 
   });
@@ -64,13 +64,14 @@ function viewEmployees (){
 
 //add a new department category
 function addDepartment (){
+  viewEmployees(); 
   console.log ("ask");
   inquirer
     .prompt ([
       {
         name: "newDepartmentName",
         type: "input",
-        message: "Insert the name of the new department you would like to add?"
+        message: "Insert the name of the new department you would like to add? +\n" 
 
       },
     ])
@@ -170,16 +171,60 @@ function addEmployee (){ //add a new employee
         if (err) throw err;
         console.log("Your auction was created successfully!");
         // re-prompt the user for if they want to bid or post
-        viewEmployees();
+        // viewEmployees();
       }
     );
   });
 }
 
-//add a new employee 
 
-// updateEmployee();
+
+
 //update an exsiting employee
+function updateEmployee (){
+  inquirer
+    .prompt ([
+      {
+        name: "updateID",
+        type: "input",
+        message: "Please enter the employee ID."
+      },
+      {
+        name: "updateSalary",
+        type: "input",
+        message: "Please enter in the new salary."
+      },
+      {
+        name: "updateTitle",
+        type: "input",
+        message: "Please enter the new title."
+      },
+      {
+        name: "updateDepartment",
+        type: "input",
+        message: "What department does this employee belong to?"
+      }
+    ])
+    .then(function(answer){
+      console.log("updating");
+      connection.query("UPDATE employee SET ? WHERE id = " + answer.updateID,
+      [
+        {
+          title: answer.updateTitle ,
+          salary: answer.updateSalary,
+          department_id: answer.updateDepartment
+
+
+        }
+      ],
+      function(err, res) {
+        if (err) throw err;
+        employeeInfo();
+      }
+      );
+    })
+
+}
 
 
 
